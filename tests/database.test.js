@@ -32,8 +32,10 @@ let db;
 before(async () => {
   db = new PGlite();
   await db.exec(SUPABASE_STANDIN);
-  const schema = readFileSync(new URL('../supabase/migrations/20261005090000_fuzet_schema.sql', import.meta.url), 'utf8');
-  await db.exec(schema);
+  // The schedule migration needs pg_cron and pg_net, which PGlite doesn't have.
+  for (const file of ['20261005090000_fuzet_schema.sql', '20261005090200_fuzet_push_subscriptions_user_index.sql']) {
+    await db.exec(readFileSync(new URL(`../supabase/migrations/${file}`, import.meta.url), 'utf8'));
+  }
 });
 
 /** Runs [fn] as a signed-in user, the way PostgREST does, inside a transaction rolled back after. */

@@ -12,11 +12,11 @@ tomorrow's list. The Android app with the same name lives in `kertember/AppForMo
 
 ## Status
 
-Built and tested; not deployed yet. Still to do:
+Supabase is set up in the **meli-app** project (organization **emlk**, ref
+`zdqnpyppxysjezxwcudg`): the migrations are applied, `notify` is deployed and the schedule runs.
+Use only that project; the projects in kertember's Org belong to other apps. Still to do:
 
-1. Supabase setup in the **meliapp** project (organization **emlk**, project ref
-   `jtykndlzuswmbzpfxfes`), steps below. Use only that project; the projects in kertember's Org
-   belong to other apps.
+1. In the meli-app dashboard: add her user, then turn off sign-ups (steps 3 and 4 below).
 2. Merge into `main` and turn on GitHub Pages.
 3. Set up her iPhone: you sign in for her once; she never sees the sign-in screen again.
 
@@ -32,8 +32,7 @@ creates its own VAPID keys on first use, so no key has to be copied anywhere.
 
 ### 1. Supabase (the meliapp project)
 
-1. Run `supabase/migrations/20261005090000_fuzet_schema.sql`, then
-   `supabase/migrations/20261005090100_fuzet_schedule.sql`, in the SQL editor.
+1. Apply the files in `supabase/migrations/` in order (SQL editor or `supabase db push`).
 2. Create an Edge Function named `notify` from the three files in `supabase/functions/notify/`
    (`index.ts`, `webpush.ts`, `messages.ts`), with **Verify JWT turned off**: pg_cron calls it
    without a user token.

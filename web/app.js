@@ -198,7 +198,7 @@ function renderWeek(mon) {
   let html = '<span></span>';
   for (let i = 0; i < 7; i++) {
     const d = addDays(mon, i);
-    const cls = d === state.today ? ' today' : d < state.today ? ' past' : '';
+    const cls = d === state.today ? ' today' : '';
     html += `<button type="button" class="wd${cls}" data-open="${d}" aria-label="${esc(`${cap(WEEKDAYS[i])}, ${f.monthDay(d, state.today)}`)}">` +
       `<span class="wd-name">${INITIALS[i]}</span><span class="wd-num">${parts(d).d}</span></button>`;
   }
@@ -207,9 +207,8 @@ function renderWeek(mon) {
     for (let i = 0; i < 7; i++) {
       const d = addDays(mon, i);
       const a = get(d, h);
-      const past = f.slotState(d, h, state.today, state.now) === 'past';
       const label = `${cap(WEEKDAYS[i])} ${h}:00, ${a ? a.name : 'szabad'}`;
-      html += `<button type="button" class="cell${a ? ' filled' : ''}${past ? ' past' : ''}" data-day="${d}" data-hour="${h}" aria-label="${esc(label)}">` +
+      html += `<button type="button" class="cell${a ? ' filled' : ''}" data-day="${d}" data-hour="${h}" aria-label="${esc(label)}">` +
         (a ? `<span class="cname">${esc(a.name)}</span>` : '') + '</button>';
     }
   }
@@ -236,7 +235,6 @@ function renderCalendar() {
       has = fromServer?.has(d) ?? false;
     }
     let cls = 'cal-day';
-    if (d < state.today) cls += ' past';
     if (d === state.today) cls += ' today';
     if (state.view === 'day' && d === state.day) cls += ' sel';
     if (state.view === 'week' && d >= mon && d <= sun) cls += ' inweek';
@@ -282,10 +280,6 @@ function closeOverlay() {
 
 function openSlot(day, hour) {
   const a = get(day, hour);
-  if (!a && f.slotState(day, hour, state.today, state.now) === 'past') {
-    showToast('Elmúlt időpontra nem lehet új diákot felvenni.');
-    return;
-  }
   state.editing = { day, hour, id: a?.id ?? null };
   $('sheetTitle').textContent = a ? 'Diák módosítása' : 'Új diák';
   $('sheetWhen').textContent = f.slotTitle(day, hour, state.today);
@@ -587,7 +581,7 @@ main.addEventListener('click', (e) => {
 });
 
 // ---------------------------------------------------------------------------------------
-// The clock: past hours grey out, and a new day moves "today" along
+// The clock: the hour under way is marked, and a new day moves "today" along
 // ---------------------------------------------------------------------------------------
 
 function tick() {

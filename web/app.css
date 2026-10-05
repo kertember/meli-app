@@ -87,11 +87,9 @@ svg { display: block; }
 .row { flex: 1 0 54px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: stretch; }
 .time { align-self: center; justify-self: center; padding: 3px 6px; border-radius: 9px; font-size: 16px; font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; }
 .row.now .time { background: var(--primary); color: var(--on-primary); }
-.row.past .time { color: var(--muted); opacity: .6; }
 .slot { min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1px; padding: 5px 14px; border: 1px solid var(--slot-line); border-radius: 12px; background: var(--slot); color: var(--fg); text-align: left; transition: transform .08s; }
 button.slot:active, .cell:active { transform: scale(.97); }
 .slot.filled { background: var(--filled); border-color: var(--filled-line); }
-.row.past > .slot, .row.past > .swipe { opacity: .45; }
 .name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 17px; font-weight: 600; line-height: 1.2; }
 .note { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; line-height: 1.25; color: var(--muted); }
 
@@ -109,13 +107,11 @@ button.slot:active, .cell:active { transform: scale(.97); }
 .wd:active { background: var(--press); }
 .wd-name { font-size: 12px; font-weight: 600; letter-spacing: .03em; }
 .wd-num { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 15px; font-size: 16px; font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
-.wd.past .wd-num { color: var(--muted); }
 .wd.today .wd-name { color: var(--accent); }
 .wd.today .wd-num { background: var(--primary); color: var(--on-primary); }
 .wtime { align-self: center; justify-self: end; padding-right: 2px; font-size: 12px; font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; }
 .cell { min-width: 0; display: flex; align-items: center; justify-content: center; padding: 2px 1px; overflow: hidden; border: 1px solid var(--slot-line); border-radius: 8px; background: var(--slot); color: var(--fg); text-align: center; transition: transform .08s; }
 .cell.filled { background: var(--filled); border-color: var(--filled-line); }
-.cell.past { opacity: .45; }
 .cname { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 11px; font-weight: 600; line-height: 1.2; letter-spacing: -.01em; }
 
 /* ---------- Bottom switch ---------- */
@@ -161,7 +157,6 @@ button.slot:active, .cell:active { transform: scale(.97); }
 .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; padding-top: 4px; }
 .cal-wd { padding: 6px 0; text-align: center; font-size: 12px; font-weight: 600; color: var(--muted); }
 .cal-day { position: relative; aspect-ratio: 1; max-width: 100%; border: 0; border-radius: 50%; background: none; font-size: 16px; color: var(--fg); font-variant-numeric: tabular-nums; }
-.cal-day.past { color: var(--muted); }
 .cal-day.inweek { background: var(--soft); }
 .cal-day.today { box-shadow: inset 0 0 0 2px var(--accent); color: var(--accent); font-weight: 700; }
 .cal-day.sel { background: var(--primary); color: var(--on-primary); font-weight: 700; }

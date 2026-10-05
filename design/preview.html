@@ -1,38 +1,40 @@
 <title>Füzet for iPhone</title>
 <style>
-/* Layout: one iPhone 16 Pro screen (402 × 874 pt): orange date header, 11 hour rows, Nap/Hét switch at the bottom.
-   Framed on wide screens, full-bleed on a phone. Colors are the Android Füzet theme. */
+/* Layout: one iPhone 16 Pro screen (402 × 874 pt): pink date header, 12 hour rows (9:00–20:00, scrolling when needed), Nap/Hét switch at the bottom.
+   Framed on wide screens, full-bleed on a phone. Main color #FFA5AB, with pink-tinted neutrals. */
 :root {
-  --bg: #FFFCF9;
-  --fg: #2E1F15;
-  --muted: #7A5A45;
-  --line: #F0D5BF;
-  --primary: #FFA654;
-  --on-primary: #3D1E05;
-  --soft: #FFE0C2;
-  --on-soft: #4A2508;
-  --accent: #CC5E10;
+  --bg: #FFFAFA;
+  --fg: #2E1A1D;
+  --muted: #7A5A5F;
+  --line: #F3D9DC;
+  --primary: #FFA5AB;
+  --on-primary: #3A1418;
+  --soft: #FFE1E3;
+  --on-soft: #5C2028;
+  --accent: #B5475A;
   --pill: #FFFFFF;
-  --slot: #FFF7F0;
-  --slot-line: #FBE7D6;
-  --filled: #FFE3CC;
-  --filled-line: #FFCFA3;
+  --slot: #FFF4F5;
+  --slot-line: #F9E3E5;
+  --filled: #FFE0E3;
+  --filled-line: #FFC2C7;
   --danger: #C8363B;
-  --press: rgba(74, 37, 8, .10);
-  --ring: rgba(255, 166, 84, .45);
-  --scrim: rgba(46, 31, 21, .38);
-  --toast-bg: #3A2414;
-  --toast-fg: #FFF4EA;
-  --toast-action: #FFB066;
-  --banner-bg: rgba(250, 246, 242, .96);
-  --banner-fg: #1D1611;
-  --banner-muted: #6F6258;
-  --page: #F3E9DF;
-  --page-fg: #2E1F15;
-  --page-muted: #7A5A45;
-  --bezel: #1C1815;
+  --danger-bg: #C62828;
+  --on-danger: #FFFFFF;
+  --press: rgba(92, 32, 40, .10);
+  --ring: rgba(255, 165, 171, .55);
+  --scrim: rgba(46, 26, 29, .38);
+  --toast-bg: #3A2226;
+  --toast-fg: #FFF2F3;
+  --banner-bg: rgba(250, 246, 247, .96);
+  --banner-fg: #1C1516;
+  --banner-muted: #6B6062;
+  --page: #F7E9EA;
+  --page-fg: #2E1A1D;
+  --page-muted: #7A5A5F;
+  --bezel: #1D1718;
   --island: #000000;
-  --shadow: 0 1px 2px rgba(61, 30, 5, .08), 0 6px 18px rgba(61, 30, 5, .10);
+  --lift: rgba(70, 25, 32, .12);
+  --shadow: 0 1px 2px rgba(70, 25, 32, .08), 0 6px 18px rgba(70, 25, 32, .10);
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --safe-top: 62px;
   --safe-bottom: 34px;
@@ -40,27 +42,29 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1C130D; --fg: #F5E4D6; --muted: #D9BEA9; --line: #4A3424;
-    --primary: #FFAD66; --on-primary: #3D1E05; --soft: #5C3313; --on-soft: #FFE0C2;
-    --accent: #FFB574; --pill: #120B07; --slot: #23180F; --slot-line: #312218;
-    --filled: #4A2D17; --filled-line: #6B4223; --danger: #FF7B7B;
-    --press: rgba(255, 224, 194, .12); --ring: rgba(255, 173, 102, .45); --scrim: rgba(0, 0, 0, .55);
-    --toast-bg: #F5E4D6; --toast-fg: #2A1A10; --toast-action: #B5520C;
-    --banner-bg: rgba(52, 44, 40, .96); --banner-fg: #F7EFE9; --banner-muted: #BCAEA3;
-    --page: #120B07; --page-fg: #F5E4D6; --page-muted: #D9BEA9; --bezel: #3A332E; --island: #000000;
+    --bg: #1B1213; --fg: #F5E4E6; --muted: #CDB2B6; --line: #452E32;
+    --primary: #FFA5AB; --on-primary: #3A1418; --soft: #4A2329; --on-soft: #FFD9DC;
+    --accent: #FFA5AB; --pill: #120B0C; --slot: #231718; --slot-line: #342124;
+    --filled: #4E2A30; --filled-line: #744049; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
+    --press: rgba(255, 217, 220, .12); --ring: rgba(255, 165, 171, .45); --scrim: rgba(0, 0, 0, .55);
+    --toast-bg: #F5E4E6; --toast-fg: #2A1719;
+    --banner-bg: rgba(50, 42, 43, .96); --banner-fg: #F7EFF0; --banner-muted: #BCAEB0;
+    --page: #0F0909; --page-fg: #F5E4E6; --page-muted: #CDB2B6; --bezel: #3A3233; --island: #000000;
+    --lift: rgba(0, 0, 0, .35);
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1C130D; --fg: #F5E4D6; --muted: #D9BEA9; --line: #4A3424;
-  --primary: #FFAD66; --on-primary: #3D1E05; --soft: #5C3313; --on-soft: #FFE0C2;
-  --accent: #FFB574; --pill: #120B07; --slot: #23180F; --slot-line: #312218;
-  --filled: #4A2D17; --filled-line: #6B4223; --danger: #FF7B7B;
-  --press: rgba(255, 224, 194, .12); --ring: rgba(255, 173, 102, .45); --scrim: rgba(0, 0, 0, .55);
-  --toast-bg: #F5E4D6; --toast-fg: #2A1A10; --toast-action: #B5520C;
-  --banner-bg: rgba(52, 44, 40, .96); --banner-fg: #F7EFE9; --banner-muted: #BCAEA3;
-  --page: #120B07; --page-fg: #F5E4D6; --page-muted: #D9BEA9; --bezel: #3A332E; --island: #000000;
+  --bg: #1B1213; --fg: #F5E4E6; --muted: #CDB2B6; --line: #452E32;
+  --primary: #FFA5AB; --on-primary: #3A1418; --soft: #4A2329; --on-soft: #FFD9DC;
+  --accent: #FFA5AB; --pill: #120B0C; --slot: #231718; --slot-line: #342124;
+  --filled: #4E2A30; --filled-line: #744049; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
+  --press: rgba(255, 217, 220, .12); --ring: rgba(255, 165, 171, .45); --scrim: rgba(0, 0, 0, .55);
+  --toast-bg: #F5E4E6; --toast-fg: #2A1719;
+  --banner-bg: rgba(50, 42, 43, .96); --banner-fg: #F7EFF0; --banner-muted: #BCAEB0;
+  --page: #0F0909; --page-fg: #F5E4E6; --page-muted: #CDB2B6; --bezel: #3A3233; --island: #000000;
+  --lift: rgba(0, 0, 0, .35);
   --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
   color-scheme: dark;
 }
@@ -87,7 +91,7 @@ svg { display: block; }
 .nav { width: 48px; height: 48px; border: 0; border-radius: 24px; background: none; display: grid; place-items: center; justify-self: center; }
 .nav:active { background: var(--press); }
 .nav svg { width: 32px; height: 32px; }
-.date { justify-self: center; display: flex; align-items: center; gap: 10px; max-width: 100%; min-width: 0; padding: 7px 16px 7px 13px; border: 0; border-radius: 16px; background: var(--pill); color: var(--fg); box-shadow: 0 1px 2px rgba(61, 30, 5, .10); }
+.date { justify-self: center; display: flex; align-items: center; gap: 10px; max-width: 100%; min-width: 0; padding: 7px 16px 7px 13px; border: 0; border-radius: 16px; background: var(--pill); color: var(--fg); box-shadow: 0 1px 2px var(--lift); }
 .date:active { transform: scale(.98); }
 .date svg { width: 24px; height: 24px; flex: none; color: var(--accent); }
 .date-text { display: flex; flex-direction: column; align-items: center; min-width: 0; }
@@ -103,18 +107,26 @@ svg { display: block; }
 @keyframes in-prev { from { transform: translateX(-26px); opacity: .2; } }
 
 .day { box-sizing: border-box; min-height: 100%; display: flex; flex-direction: column; gap: 5px; padding: 10px 12px 10px 2px; }
-.row { flex: 1 0 48px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: stretch; }
+.row { flex: 1 0 54px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: stretch; }
 .time { align-self: center; justify-self: center; padding: 3px 6px; border-radius: 9px; font-size: 16px; font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; }
 .row.now .time { background: var(--primary); color: var(--on-primary); }
 .row.past .time { color: var(--muted); opacity: .6; }
 .slot { min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1px; padding: 5px 14px; border: 1px solid var(--slot-line); border-radius: 12px; background: var(--slot); text-align: left; transition: transform .08s; }
-.slot:active, .cell:active { transform: scale(.97); }
+button.slot:active, .cell:active { transform: scale(.97); }
 .slot.filled { background: var(--filled); border-color: var(--filled-line); }
-.row.past .slot { opacity: .45; }
+.row.past > .slot, .row.past > .swipe { opacity: .45; }
+.swipe { position: relative; min-width: 0; display: grid; border-radius: 12px; overflow: hidden; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+.swipe > .slot { position: relative; z-index: 1; }
+.act { position: absolute; top: 0; bottom: 0; width: 50%; display: none; align-items: center; padding: 0 10px; border: 0; }
+.swipe.active .act { display: flex; }
+.act.del { left: 0; justify-content: flex-start; background: var(--danger-bg); color: var(--on-danger); }
+.act.edit { right: 0; justify-content: flex-end; background: var(--primary); color: var(--on-primary); }
+.act-icon { width: 64px; height: 100%; display: grid; place-items: center; }
+.act svg { width: 28px; height: 28px; }
 .name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 17px; font-weight: 600; line-height: 1.2; }
 .note { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; line-height: 1.25; color: var(--muted); }
 
-.week { box-sizing: border-box; min-height: 100%; display: grid; grid-template-columns: 20px repeat(7, minmax(0, 1fr)); grid-template-rows: auto repeat(11, minmax(42px, 1fr)); gap: 2px; padding: 6px 8px 10px 2px; }
+.week { box-sizing: border-box; min-height: 100%; display: grid; grid-template-columns: 20px repeat(7, minmax(0, 1fr)); grid-template-rows: auto repeat(12, minmax(42px, 1fr)); gap: 2px; padding: 6px 8px 10px 2px; }
 .wd { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 2px 0 5px; border: 0; border-radius: 10px; background: none; color: var(--muted); }
 .wd:active { background: var(--press); }
 .wd-name { font-size: 12px; font-weight: 600; letter-spacing: .03em; }
@@ -131,7 +143,7 @@ svg { display: block; }
 /* ---------- Bottom switch ---------- */
 .bar { flex: none; display: flex; justify-content: center; padding: 8px 16px calc(var(--safe-bottom) + 4px); border-top: 1px solid var(--line); background: var(--bg); }
 .seg { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: min(100%, 240px); padding: 3px; border-radius: 13px; background: var(--soft); }
-.seg::before { content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 10px; background: var(--primary); box-shadow: 0 1px 3px rgba(61, 30, 5, .18); transition: transform .22s ease; }
+.seg::before { content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 10px; background: var(--primary); box-shadow: 0 1px 3px var(--lift); transition: transform .22s ease; }
 .seg.is-week::before { transform: translateX(100%); }
 .seg button { position: relative; z-index: 1; height: 36px; border: 0; background: none; font-size: 15px; font-weight: 600; color: var(--on-soft); }
 .seg button[aria-selected="true"] { color: var(--on-primary); }
@@ -149,13 +161,13 @@ svg { display: block; }
 .field label { font-size: 13px; font-weight: 600; letter-spacing: .03em; color: var(--muted); }
 .field input, .field textarea { box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--pill); color: var(--fg); font: inherit; font-size: 17px; resize: none; outline: none; }
 .field input:focus, .field textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--ring); }
+.field .optional { font-weight: 500; letter-spacing: 0; opacity: .8; }
 .field ::placeholder { color: var(--muted); opacity: .6; }
 .actions { display: grid; grid-template-columns: 1fr 1.5fr; gap: 10px; margin-top: 4px; }
 .btn { height: 50px; border: 0; border-radius: 14px; font-size: 17px; font-weight: 600; }
 .btn.primary { background: var(--primary); color: var(--on-primary); }
 .btn.primary:disabled { opacity: .45; cursor: default; }
 .btn.secondary { border: 1px solid var(--line); background: var(--slot); color: var(--fg); }
-.btn.danger { height: 40px; margin-top: -6px; background: none; color: var(--danger); }
 
 .cal { position: absolute; z-index: 21; top: 50%; left: 50%; width: min(354px, calc(100% - 32px)); box-sizing: border-box; padding: 6px 10px 16px; border-radius: 24px; background: var(--bg); box-shadow: 0 12px 40px rgba(0, 0, 0, .22); opacity: 0; transform: translate(-50%, -50%) scale(.95); transition: opacity .18s, transform .18s; }
 .cal.open { opacity: 1; transform: translate(-50%, -50%); }
@@ -175,13 +187,13 @@ svg { display: block; }
 .cal-day.has::after { content: ""; position: absolute; bottom: 5px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--accent); }
 .cal-day.sel.has::after { background: var(--on-primary); }
 
-.toast { position: absolute; z-index: 30; left: 16px; right: 16px; bottom: calc(var(--safe-bottom) + 64px); display: flex; align-items: center; gap: 8px; min-height: 48px; box-sizing: border-box; padding: 6px 6px 6px 16px; border-radius: 14px; background: var(--toast-bg); color: var(--toast-fg); font-size: 15px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); transition: opacity .2s, transform .2s; }
+.toast { position: absolute; z-index: 30; left: 16px; right: 16px; bottom: calc(var(--safe-bottom) + 64px); display: flex; align-items: center; gap: 8px; min-height: 48px; box-sizing: border-box; padding: 6px 16px; border-radius: 14px; background: var(--toast-bg); color: var(--toast-fg); font-size: 15px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); transition: opacity .2s, transform .2s; }
 .toast.show { opacity: 1; transform: none; }
-.toast button { margin-left: auto; padding: 8px 12px; border: 0; border-radius: 10px; background: none; color: var(--toast-action); font-weight: 700; }
+.toast { touch-action: none; -webkit-user-select: none; user-select: none; }
 
 .banner { position: absolute; z-index: 40; top: 54px; left: 10px; right: 10px; display: flex; gap: 11px; padding: 12px 14px; border-radius: 24px; background: var(--banner-bg); color: var(--banner-fg); box-shadow: 0 8px 30px rgba(0, 0, 0, .25); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); opacity: 0; transform: translateY(-16px); transition: opacity .25s, transform .3s cubic-bezier(.2, .8, .2, 1); cursor: pointer; }
 .banner.show { opacity: 1; transform: none; }
-.b-icon { flex: none; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 9px; background: var(--primary); }
+.b-icon { flex: none; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 9px; background: var(--primary); color: var(--on-primary); }
 .b-icon svg { width: 24px; height: 24px; }
 .b-body { min-width: 0; flex: 1; }
 .b-head { display: flex; gap: 8px; align-items: baseline; }
@@ -261,7 +273,7 @@ svg { display: block; }
         <form class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
           <div class="grab" aria-hidden="true"></div>
           <div>
-            <h2 id="sheetTitle">Új kliens</h2>
+            <h2 id="sheetTitle">Új diák</h2>
             <p class="when" id="sheetWhen"></p>
           </div>
           <div class="field">
@@ -269,14 +281,17 @@ svg { display: block; }
             <input id="fName" type="text" autocomplete="off" autocapitalize="words" enterkeyhint="next" placeholder="pl. Kovács Anna">
           </div>
           <div class="field">
+            <label for="fPhone">Telefonszám <span class="optional">(nem kötelező)</span></label>
+            <input id="fPhone" type="tel" inputmode="tel" autocomplete="off" enterkeyhint="next" placeholder="pl. 0745 123 456">
+          </div>
+          <div class="field">
             <label for="fNote">Megjegyzés</label>
-            <textarea id="fNote" rows="2" enterkeyhint="done" placeholder="pl. hajvágás, hajfestés"></textarea>
+            <textarea id="fNote" rows="2" enterkeyhint="done" placeholder="pl. online óra, dolgozatra készül"></textarea>
           </div>
           <div class="actions">
             <button class="btn secondary" type="button" id="cancel">Mégse</button>
             <button class="btn primary" type="submit" id="save">Mentés</button>
           </div>
-          <button class="btn danger" type="button" id="del">Törlés</button>
         </form>
 
         <div class="cal" id="cal" role="dialog" aria-modal="true" aria-label="Dátum választása" hidden>
@@ -292,10 +307,10 @@ svg { display: block; }
           <div class="cal-grid" id="calGrid"></div>
         </div>
 
-        <div class="toast" id="toast" role="status" hidden><span id="toastText"></span><button type="button" id="toastAction" hidden>Visszavonás</button></div>
+        <div class="toast" id="toast" role="status" hidden><span id="toastText"></span></div>
 
         <div class="banner" id="banner" role="status" hidden>
-          <div class="b-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#4A2508"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64ZM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2Zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2Zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5ZM19 3l-6 6 2 2 7-7V3h-3Z"/></svg></div>
+          <div class="b-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18M12.5 8h3M12.5 12h3"/></svg></div>
           <div class="b-body">
             <div class="b-head"><span class="b-title" id="bTitle"></span><span class="b-time">most</span></div>
             <div class="b-text" id="bText"></div>
@@ -309,13 +324,15 @@ svg { display: block; }
 
   <aside class="panel">
     <h1>Füzet for iPhone</h1>
-    <p>A preview at iPhone 16 Pro size (402 × 874 points). The clients are samples. The clock is fixed at Tuesday 6 October, 10:40, so the earlier hours show as past.</p>
+    <p>A preview at iPhone 16 Pro size (402 × 874 points). The students are samples. The clock is fixed at Tuesday 6 October, 10:40, so the earlier hours show as past.</p>
     <h2>Try it</h2>
     <ul>
-      <li>Tap an empty hour to add a client.</li>
-      <li>Tap a client to change or delete them.</li>
+      <li>Tap an empty hour to add a student.</li>
+      <li>In Nap, swipe a student left and tap the pen to change them, or swipe right and tap the bin to delete them.</li>
+      <li>In Hét, tap a student to change them.</li>
+      <li>Messages such as “Elmentve” disappear after 1.5 seconds. Swipe one down to close it sooner.</li>
       <li>Tap the date to open the calendar.</li>
-      <li>Use ‹ › or swipe sideways to move a day or a week.</li>
+      <li>Use ‹ › to move a day or a week. In Hét you can also swipe sideways.</li>
       <li>Switch between Nap and Hét at the bottom. In Hét, tap a weekday to open that day.</li>
     </ul>
     <h2>Notifications</h2>
@@ -339,7 +356,7 @@ svg { display: block; }
   // The preview's fixed "now": Tuesday 6 October 2026, 10:40.
   var TODAY = '2026-10-06';
   var NOW = 10 * 60 + 40;
-  var FIRST_HOUR = 9, LAST_HOUR = 19;
+  var FIRST_HOUR = 9, LAST_HOUR = 20;
 
   var MONTHS = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
   var MONTHS_SHORT = ['jan.', 'febr.', 'márc.', 'ápr.', 'máj.', 'jún.', 'júl.', 'aug.', 'szept.', 'okt.', 'nov.', 'dec.'];
@@ -394,24 +411,24 @@ svg { display: block; }
     return 'future';
   }
 
-  // ---- Sample clients ----
+  // ---- Sample students ----
   var data = new Map();
   var samples = {
-    '2026-09-29': { 10: ['Kiss Mariann', 'festés'], 14: ['Nagy Éva', 'vágás'] },
-    '2026-10-02': { 9: ['Horváth Kata', 'melír'], 15: ['Simon Edit', 'vágás'] },
-    '2026-10-05': { 9: ['Nagy Éva', 'festés + vágás'], 11: ['Kiss Mariann', 'melír'], 14: ['Tóth Ilona', 'dauer'], 16: ['Horváth Kata', 'vágás'] },
-    '2026-10-06': { 9: ['Szabó Réka', 'hajvágás'], 10: ['Varga Zsuzsa', 'tőfestés'], 11: ['Kovács Anna', 'festés, szárítás'], 13: ['Molnár Judit', 'frufru igazítás'], 15: ['Farkas Eszter', 'melír + vágás'], 17: ['Balogh Nóra', 'kontyfrizura esküvőre'], 18: ['Papp Gizi', 'vágás'] },
-    '2026-10-07': { 9: ['Lakatos Erika', 'dauer'], 10: ['Takács Bea', 'vágás'], 12: ['Juhász Mária', 'festés'], 16: ['Németh Zita', 'hajvágás'] },
-    '2026-10-08': { 10: ['Oláh Kinga', 'balayage'], 14: ['Simon Edit', 'vágás, szárítás'], 15: ['Rácz Anikó', 'tőfestés'], 18: ['Fekete Hajni', 'vágás'] },
-    '2026-10-09': { 9: ['Szűcs Marika', 'festés'], 11: ['Török Dóra', 'melír'], 12: ['Gál Andrea', ''], 13: ['Pintér Rita', 'vágás'], 17: ['Bíró Lilla', 'szalagavatós frizura'] },
-    '2026-10-10': { 9: ['Vincze Klára', 'vágás'], 10: ['Kozma Ági', 'festés'] },
-    '2026-10-13': { 10: ['Nagy Éva', 'vágás'], 15: ['Kiss Mariann', 'tőfestés'] },
-    '2026-10-15': { 9: ['Tóth Ilona', 'vágás'], 11: ['Horváth Kata', 'festés'] },
-    '2026-10-20': { 14: ['Balogh Nóra', 'próbafrizura'] }
+    '2026-09-29': { 10: ['Kiss Mariann', 'online'], 14: ['Nagy Éva', ''] },
+    '2026-10-02': { 9: ['Horváth Kata', ''], 15: ['Simon Edit', 'online'] },
+    '2026-10-05': { 9: ['Nagy Éva', 'dolgozatra készül'], 11: ['Kiss Mariann', 'házi feladat'], 14: ['Tóth Ilona', 'online'], 16: ['Horváth Kata', ''] },
+    '2026-10-06': { 9: ['Szabó Réka', 'első óra', '0742 555 014'], 10: ['Varga Zsuzsa', 'házi feladat'], 11: ['Kovács Anna', 'dolgozat pénteken', '0745 555 018'], 13: ['Molnár Judit', 'online'], 15: ['Farkas Eszter', 'pótóra'], 17: ['Balogh Nóra', 'vizsgára készül'], 18: ['Papp Gizi', '', '0723 555 016'], 19: ['Takács Bea', 'online'] },
+    '2026-10-07': { 9: ['Lakatos Erika', 'első óra', '0754 555 011'], 10: ['Takács Bea', 'online'], 12: ['Juhász Mária', 'dolgozatra készül'], 16: ['Németh Zita', ''], 20: ['Kozma Ági', 'pótóra'] },
+    '2026-10-08': { 10: ['Oláh Kinga', 'házi feladat'], 14: ['Simon Edit', 'online'], 15: ['Rácz Anikó', ''], 18: ['Fekete Hajni', 'dolgozat jövő héten'], 20: ['Bíró Lilla', 'online'] },
+    '2026-10-09': { 9: ['Szűcs Marika', 'online'], 11: ['Török Dóra', 'első óra'], 12: ['Gál Andrea', ''], 13: ['Pintér Rita', 'házi feladat'], 17: ['Bíró Lilla', 'vizsgára készül'] },
+    '2026-10-10': { 9: ['Vincze Klára', ''], 10: ['Kozma Ági', 'pótóra'] },
+    '2026-10-13': { 10: ['Nagy Éva', ''], 15: ['Kiss Mariann', 'online'] },
+    '2026-10-15': { 9: ['Tóth Ilona', 'dolgozatra készül'], 11: ['Horváth Kata', ''] },
+    '2026-10-20': { 14: ['Balogh Nóra', 'vizsga előtti óra'] }
   };
   Object.keys(samples).forEach(function (day) {
     Object.keys(samples[day]).forEach(function (h) {
-      data.set(day + '|' + h, { name: samples[day][h][0], note: samples[day][h][1] });
+      data.set(day + '|' + h, { name: samples[day][h][0], note: samples[day][h][1], phone: samples[day][h][2] || '' });
     });
   });
   function get(day, hour) { return data.get(day + '|' + hour); }
@@ -421,7 +438,7 @@ svg { display: block; }
   function $(id) { return document.getElementById(id); }
   var screen = $('screen'), main = $('main'), dayView = $('dayView'), weekView = $('weekView');
   var scrim = $('scrim'), sheet = $('sheet'), cal = $('cal');
-  var fName = $('fName'), fNote = $('fNote');
+  var fName = $('fName'), fPhone = $('fPhone'), fNote = $('fNote');
 
   function esc(t) {
     return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
@@ -448,15 +465,27 @@ svg { display: block; }
     }
   }
 
+  var BIN = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6l1 1h4v2H4V4h4l1-1Zm-3 5h12l-.8 11.2A2 2 0 0 1 15.2 21H8.8a2 2 0 0 1-2-1.8L6 8Z"/></svg>';
+  var PEN = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75L3 17.25Zm17.7-10.2a1 1 0 0 0 0-1.42l-2.33-2.33a1 1 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/></svg>';
+
   function renderDay() {
+    openSwipe = null;
     var html = '';
     for (var h = FIRST_HOUR; h <= LAST_HOUR; h++) {
       var a = get(state.day, h), st = slotState(state.day, h);
-      var label = h + ':00, ' + (a ? a.name + (a.note ? ', ' + a.note : '') : 'szabad');
-      html += '<div class="row ' + st + '"><span class="time">' + h + ':00</span>' +
-        '<button type="button" class="slot' + (a ? ' filled' : '') + '" data-day="' + state.day + '" data-hour="' + h + '" aria-label="' + esc(label) + '">' +
-        (a ? '<span class="name">' + esc(a.name) + '</span>' + (a.note ? '<span class="note">' + esc(a.note) + '</span>' : '') : '') +
-        '</button></div>';
+      var where = ' data-day="' + state.day + '" data-hour="' + h + '"';
+      html += '<div class="row ' + st + '"><span class="time">' + h + ':00</span>';
+      if (!a) {
+        html += '<button type="button" class="slot"' + where + ' aria-label="' + h + ':00, szabad"></button></div>';
+        continue;
+      }
+      var details = [a.note, a.phone].filter(Boolean).join(' · ');
+      html += '<div class="swipe"' + where + '>' +
+        '<button type="button" class="act del" tabindex="-1" aria-label="Törlés"><span class="act-icon">' + BIN + '</span></button>' +
+        '<button type="button" class="act edit" tabindex="-1" aria-label="Módosítás"><span class="act-icon">' + PEN + '</span></button>' +
+        '<div class="slot filled">' +
+        '<span class="name">' + esc(a.name) + '</span>' + (details ? '<span class="note">' + esc(details) + '</span>' : '') +
+        '</div></div></div>';
     }
     $('dayList').innerHTML = html;
   }
@@ -530,15 +559,15 @@ svg { display: block; }
   function openSlot(day, hour) {
     var a = get(day, hour);
     if (!a && slotState(day, hour) === 'past') {
-      showToast('Elmúlt időpontra nem lehet új klienst felvenni.');
+      showToast('Elmúlt időpontra nem lehet új diákot felvenni.');
       return;
     }
     state.editing = { day: day, hour: hour, isNew: !a };
-    $('sheetTitle').textContent = a ? 'Kliens módosítása' : 'Új kliens';
+    $('sheetTitle').textContent = a ? 'Diák módosítása' : 'Új diák';
     $('sheetWhen').textContent = cap(WEEKDAYS[weekday(day)]) + ', ' + monthDay(day) + ' · ' + hour + ':00–' + (hour + 1) + ':00';
     fName.value = a ? a.name : '';
+    fPhone.value = a ? a.phone : '';
     fNote.value = a ? a.note : '';
-    $('del').hidden = !a;
     updateSave();
     hideToast();
     openOverlay(sheet);
@@ -550,21 +579,15 @@ svg { display: block; }
     e.preventDefault();
     var ed = state.editing, name = fName.value.trim();
     if (!ed || !name) return;
-    data.set(ed.day + '|' + ed.hour, { name: name, note: fNote.value.trim() });
+    data.set(ed.day + '|' + ed.hour, { name: name, phone: fPhone.value.trim(), note: fNote.value.trim() });
     closeOverlay();
     render();
     showToast(ed.isNew ? 'Elmentve' : 'Módosítva');
   });
   $('cancel').addEventListener('click', closeOverlay);
-  $('del').addEventListener('click', function () {
-    var ed = state.editing, key = ed.day + '|' + ed.hour, removed = data.get(key);
-    data.delete(key);
-    closeOverlay();
-    render();
-    showToast(removed.name + ' törölve', function () { data.set(key, removed); render(); });
-  });
   fName.addEventListener('input', updateSave);
-  fName.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); fNote.focus(); } });
+  fName.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); fPhone.focus(); } });
+  fPhone.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); fNote.focus(); } });
   scrim.addEventListener('click', closeOverlay);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeOverlay(); });
 
@@ -593,29 +616,53 @@ svg { display: block; }
   });
 
   // ---- Toast ----
-  var toastTimer = null, toastUndo = null;
-  function showToast(text, undo) {
-    var t = $('toast');
+  // A message stays 1.5 seconds; swiping it down puts it away sooner.
+  var TOAST_MS = 1500, toastTimer = null, toastDrag = null, toast = $('toast');
+  function showToast(text) {
     $('toastText').textContent = text;
-    toastUndo = undo || null;
-    $('toastAction').hidden = !undo;
-    t.hidden = false;
-    void t.offsetWidth;
-    t.classList.add('show');
+    toast.style.transition = '';
+    toast.style.transform = '';
+    toast.hidden = false;
+    void toast.offsetWidth;
+    toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(hideToast, undo ? 5000 : 2600);
+    toastTimer = setTimeout(hideToast, TOAST_MS);
   }
   function hideToast() {
-    var t = $('toast');
     clearTimeout(toastTimer);
-    t.classList.remove('show');
-    toastTimer = setTimeout(function () { t.hidden = true; }, 220);
+    toast.classList.remove('show');
+    toastTimer = setTimeout(function () {
+      toast.hidden = true;
+      toast.style.transition = '';
+      toast.style.transform = '';
+    }, 220);
   }
-  $('toastAction').addEventListener('click', function () {
-    if (toastUndo) toastUndo();
-    toastUndo = null;
-    hideToast();
+  toast.addEventListener('pointerdown', function (e) {
+    toastDrag = { id: e.pointerId, y: e.clientY, dy: 0 };
+    clearTimeout(toastTimer);
+    try { toast.setPointerCapture(e.pointerId); } catch (err) {}
+    toast.style.transition = 'none';
   });
+  toast.addEventListener('pointermove', function (e) {
+    if (!toastDrag || e.pointerId !== toastDrag.id) return;
+    toastDrag.dy = Math.max(0, e.clientY - toastDrag.y);
+    toast.style.transform = 'translateY(' + toastDrag.dy + 'px)';
+  });
+  function endToastDrag(e) {
+    if (!toastDrag || e.pointerId !== toastDrag.id) return;
+    var dy = toastDrag.dy;
+    toastDrag = null;
+    toast.style.transition = '';
+    if (dy > 24) {
+      toast.style.transform = 'translateY(' + (dy + 40) + 'px)';
+      hideToast();
+    } else {
+      toast.style.transform = '';
+      toastTimer = setTimeout(hideToast, TOAST_MS);
+    }
+  }
+  toast.addEventListener('pointerup', endToastDrag);
+  toast.addEventListener('pointercancel', endToastDrag);
 
   // ---- Navigation ----
   function step(n) {
@@ -627,9 +674,11 @@ svg { display: block; }
   $('tabDay').addEventListener('click', function () { if (state.view !== 'day') { state.view = 'day'; render(); } });
   $('tabWeek').addEventListener('click', function () { if (state.view !== 'week') { state.view = 'week'; render(); } });
 
+  // In Hét a sideways swipe moves a week. In Nap it belongs to the students (below), so only the arrows move the day.
   var swiped = false, sx = 0, sy = 0;
   main.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
   main.addEventListener('touchend', function (e) {
+    if (state.view !== 'week') return;
     var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
       swiped = true;
@@ -637,8 +686,71 @@ svg { display: block; }
       step(dx < 0 ? 1 : -1);
     }
   }, { passive: true });
+  // A student slides right to uncover the bin and left to uncover the pen; one at a time.
+  var REVEAL = 84, openSwipe = null, drag = null, ignoreClickUntil = 0;
+  function moveCard(wrap, x, animate) {
+    var card = wrap.querySelector('.slot');
+    card.style.transition = animate ? 'transform .22s cubic-bezier(.2, .8, .2, 1)' : 'none';
+    card.style.transform = x ? 'translateX(' + x + 'px)' : '';
+    wrap.dataset.x = x;
+  }
+  function settle(wrap, x) {
+    moveCard(wrap, x, true);
+    if (x) { openSwipe = wrap; return; }
+    if (openSwipe === wrap) openSwipe = null;
+    setTimeout(function () { if (!+wrap.dataset.x) wrap.classList.remove('active'); }, 240);
+  }
+  var dayList = $('dayList');
+  dayList.addEventListener('pointerdown', function (e) {
+    var wrap = e.target.closest('.swipe');
+    if (!wrap || e.target.closest('.act')) return;
+    drag = { wrap: wrap, id: e.pointerId, sx: e.clientX, sy: e.clientY, base: +wrap.dataset.x || 0, moving: false };
+  });
+  dayList.addEventListener('pointermove', function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (!drag.moving) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { drag = null; return; }
+      if (Math.abs(dx) < 8) return;
+      drag.moving = true;
+      try { drag.wrap.setPointerCapture(e.pointerId); } catch (err) {}
+      if (openSwipe && openSwipe !== drag.wrap) settle(openSwipe, 0);
+      drag.wrap.classList.add('active');
+    }
+    var x = drag.base + dx, ax = Math.abs(x);
+    if (ax > REVEAL) x = Math.sign(x) * (REVEAL + (ax - REVEAL) * 0.3);
+    moveCard(drag.wrap, x, false);
+  });
+  function endDrag(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag;
+    drag = null;
+    if (!d.moving) return;
+    ignoreClickUntil = Date.now() + 300;
+    var x = +d.wrap.dataset.x || 0;
+    settle(d.wrap, x > REVEAL * 0.57 ? REVEAL : x < -REVEAL * 0.57 ? -REVEAL : 0);
+  }
+  dayList.addEventListener('pointerup', endDrag);
+  dayList.addEventListener('pointercancel', endDrag);
+
   main.addEventListener('click', function (e) {
-    if (swiped) return;
+    if (swiped || Date.now() < ignoreClickUntil) return;
+    var act = e.target.closest('.act');
+    if (act) {
+      var wrap = act.closest('.swipe'), day = wrap.getAttribute('data-day'), hour = +wrap.getAttribute('data-hour');
+      if (act.classList.contains('del')) {
+        var removed = get(day, hour);
+        data.delete(day + '|' + hour);
+        render();
+        showToast(removed.name + ' törölve');
+      } else {
+        settle(wrap, 0);
+        openSlot(day, hour);
+      }
+      return;
+    }
+    if (openSwipe) { settle(openSwipe, 0); return; }
+    if (e.target.closest('.swipe')) return;
     var open = e.target.closest('[data-open]');
     if (open) {
       state.day = open.getAttribute('data-open');
@@ -679,7 +791,7 @@ svg { display: block; }
           if (a && h * 60 > NOW) break;
           a = null;
         }
-        if (!a) { note.textContent = 'There are no more clients today in the preview, so no reminder is due.'; return; }
+        if (!a) { note.textContent = 'There are no more students today in the preview, so no reminder is due.'; return; }
         showBanner('1 óra múlva: ' + a.name, h + ':00' + (a.note ? ' · ' + a.note : ''));
       } else {
         var tomorrow = addDays(TODAY, 1), lines = [];
@@ -687,8 +799,8 @@ svg { display: block; }
           a = get(tomorrow, h);
           if (a) lines.push(h + ':00 ' + a.name + (a.note ? ' – ' + a.note : ''));
         }
-        if (!lines.length) { note.textContent = 'There are no clients tomorrow, so the 21:00 notification would be skipped.'; return; }
-        showBanner('Itt vannak a holnapi klienseid.', lines.join('\n'));
+        if (!lines.length) { note.textContent = 'There are no students tomorrow, so the 21:00 notification would be skipped.'; return; }
+        showBanner('Itt vannak a holnapi diákjaid.', lines.join('\n'));
       }
     });
   });

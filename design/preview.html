@@ -1,40 +1,40 @@
 <title>Füzet for iPhone</title>
 <style>
-/* Layout: one iPhone 16 Pro screen (402 × 874 pt): coral date header, 12 hour rows (9:00–20:00, scrolling when needed), Nap/Hét switch at the bottom.
-   Framed on wide screens, full-bleed on a phone. Main color #E76F51, with coral-tinted neutrals. */
+/* Layout: one iPhone 16 Pro screen (402 × 874 pt): pink date header, 12 hour rows (9:00–20:00, scrolling when needed), Nap/Hét switch at the bottom.
+   Framed on wide screens, full-bleed on a phone. Main color #FFA5AB, with pink-tinted neutrals. */
 :root {
-  --bg: #FFFAF8;
-  --fg: #2B1A15;
-  --muted: #7A5A50;
-  --line: #F1D9D1;
-  --primary: #E76F51;
-  --on-primary: #2A130C;
-  --soft: #FBE1D9;
-  --on-soft: #5A2416;
-  --accent: #B84A2F;
+  --bg: #FFFAFA;
+  --fg: #2E1A1D;
+  --muted: #7A5A5F;
+  --line: #F3D9DC;
+  --primary: #FFA5AB;
+  --on-primary: #3A1418;
+  --soft: #FFE1E3;
+  --on-soft: #5C2028;
+  --accent: #B5475A;
   --pill: #FFFFFF;
-  --slot: #FDF3EF;
-  --slot-line: #F6E3DC;
-  --filled: #FADBD1;
-  --filled-line: #F2BBA9;
+  --slot: #FFF4F5;
+  --slot-line: #F9E3E5;
+  --filled: #FFE0E3;
+  --filled-line: #FFC2C7;
   --danger: #C8363B;
   --danger-bg: #C62828;
   --on-danger: #FFFFFF;
-  --press: rgba(90, 36, 22, .10);
-  --ring: rgba(231, 111, 81, .40);
-  --scrim: rgba(43, 26, 21, .38);
-  --toast-bg: #3A221B;
-  --toast-fg: #FFF3EE;
-  --banner-bg: rgba(250, 246, 244, .96);
-  --banner-fg: #1C1513;
-  --banner-muted: #6B605C;
-  --page: #F5E8E3;
-  --page-fg: #2B1A15;
-  --page-muted: #7A5A50;
-  --bezel: #1D1715;
+  --press: rgba(92, 32, 40, .10);
+  --ring: rgba(255, 165, 171, .55);
+  --scrim: rgba(46, 26, 29, .38);
+  --toast-bg: #3A2226;
+  --toast-fg: #FFF2F3;
+  --banner-bg: rgba(250, 246, 247, .96);
+  --banner-fg: #1C1516;
+  --banner-muted: #6B6062;
+  --page: #F7E9EA;
+  --page-fg: #2E1A1D;
+  --page-muted: #7A5A5F;
+  --bezel: #1D1718;
   --island: #000000;
-  --lift: rgba(60, 25, 15, .12);
-  --shadow: 0 1px 2px rgba(60, 25, 15, .08), 0 6px 18px rgba(60, 25, 15, .10);
+  --lift: rgba(70, 25, 32, .12);
+  --shadow: 0 1px 2px rgba(70, 25, 32, .08), 0 6px 18px rgba(70, 25, 32, .10);
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --safe-top: 62px;
   --safe-bottom: 34px;
@@ -42,28 +42,28 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1B1210; --fg: #F5E5DF; --muted: #CDB2A8; --line: #45302A;
-    --primary: #E76F51; --on-primary: #2A130C; --soft: #4A2419; --on-soft: #FCD9CD;
-    --accent: #F29A80; --pill: #120B09; --slot: #231714; --slot-line: #33221D;
-    --filled: #4E2A20; --filled-line: #74402F; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
-    --press: rgba(252, 217, 205, .12); --ring: rgba(231, 111, 81, .45); --scrim: rgba(0, 0, 0, .55);
-    --toast-bg: #F5E5DF; --toast-fg: #2A1712;
-    --banner-bg: rgba(50, 42, 40, .96); --banner-fg: #F7EFEC; --banner-muted: #BCAEA8;
-    --page: #0F0907; --page-fg: #F5E5DF; --page-muted: #CDB2A8; --bezel: #3A322F; --island: #000000;
+    --bg: #1B1213; --fg: #F5E4E6; --muted: #CDB2B6; --line: #452E32;
+    --primary: #FFA5AB; --on-primary: #3A1418; --soft: #4A2329; --on-soft: #FFD9DC;
+    --accent: #FFA5AB; --pill: #120B0C; --slot: #231718; --slot-line: #342124;
+    --filled: #4E2A30; --filled-line: #744049; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
+    --press: rgba(255, 217, 220, .12); --ring: rgba(255, 165, 171, .45); --scrim: rgba(0, 0, 0, .55);
+    --toast-bg: #F5E4E6; --toast-fg: #2A1719;
+    --banner-bg: rgba(50, 42, 43, .96); --banner-fg: #F7EFF0; --banner-muted: #BCAEB0;
+    --page: #0F0909; --page-fg: #F5E4E6; --page-muted: #CDB2B6; --bezel: #3A3233; --island: #000000;
     --lift: rgba(0, 0, 0, .35);
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1B1210; --fg: #F5E5DF; --muted: #CDB2A8; --line: #45302A;
-  --primary: #E76F51; --on-primary: #2A130C; --soft: #4A2419; --on-soft: #FCD9CD;
-  --accent: #F29A80; --pill: #120B09; --slot: #231714; --slot-line: #33221D;
-  --filled: #4E2A20; --filled-line: #74402F; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
-  --press: rgba(252, 217, 205, .12); --ring: rgba(231, 111, 81, .45); --scrim: rgba(0, 0, 0, .55);
-  --toast-bg: #F5E5DF; --toast-fg: #2A1712;
-  --banner-bg: rgba(50, 42, 40, .96); --banner-fg: #F7EFEC; --banner-muted: #BCAEA8;
-  --page: #0F0907; --page-fg: #F5E5DF; --page-muted: #CDB2A8; --bezel: #3A322F; --island: #000000;
+  --bg: #1B1213; --fg: #F5E4E6; --muted: #CDB2B6; --line: #452E32;
+  --primary: #FFA5AB; --on-primary: #3A1418; --soft: #4A2329; --on-soft: #FFD9DC;
+  --accent: #FFA5AB; --pill: #120B0C; --slot: #231718; --slot-line: #342124;
+  --filled: #4E2A30; --filled-line: #744049; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
+  --press: rgba(255, 217, 220, .12); --ring: rgba(255, 165, 171, .45); --scrim: rgba(0, 0, 0, .55);
+  --toast-bg: #F5E4E6; --toast-fg: #2A1719;
+  --banner-bg: rgba(50, 42, 43, .96); --banner-fg: #F7EFF0; --banner-muted: #BCAEB0;
+  --page: #0F0909; --page-fg: #F5E4E6; --page-muted: #CDB2B6; --bezel: #3A3233; --island: #000000;
   --lift: rgba(0, 0, 0, .35);
   --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
   color-scheme: dark;

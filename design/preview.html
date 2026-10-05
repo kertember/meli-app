@@ -1,40 +1,40 @@
 <title>Füzet for iPhone</title>
 <style>
-/* Layout: one iPhone 16 Pro screen (402 × 874 pt): green date header, 12 hour rows (9:00–20:00, scrolling when needed), Nap/Hét switch at the bottom.
-   Framed on wide screens, full-bleed on a phone. Main color #588157, with green-tinted neutrals. */
+/* Layout: one iPhone 16 Pro screen (402 × 874 pt): coral date header, 12 hour rows (9:00–20:00, scrolling when needed), Nap/Hét switch at the bottom.
+   Framed on wide screens, full-bleed on a phone. Main color #E76F51, with coral-tinted neutrals. */
 :root {
-  --bg: #FAFBF7;
-  --fg: #1E2A20;
-  --muted: #5B6B5D;
-  --line: #D9E0D3;
-  --primary: #588157;
-  --on-primary: #FFFFFF;
-  --soft: #E2EBDC;
-  --on-soft: #344E41;
-  --accent: #4A7049;
+  --bg: #FFFAF8;
+  --fg: #2B1A15;
+  --muted: #7A5A50;
+  --line: #F1D9D1;
+  --primary: #E76F51;
+  --on-primary: #2A130C;
+  --soft: #FBE1D9;
+  --on-soft: #5A2416;
+  --accent: #B84A2F;
   --pill: #FFFFFF;
-  --slot: #F3F6F0;
-  --slot-line: #E3E9DE;
-  --filled: #DCE8D6;
-  --filled-line: #BCD0B3;
+  --slot: #FDF3EF;
+  --slot-line: #F6E3DC;
+  --filled: #FADBD1;
+  --filled-line: #F2BBA9;
   --danger: #C8363B;
-  --danger-bg: #D63C41;
+  --danger-bg: #C62828;
   --on-danger: #FFFFFF;
-  --press: rgba(52, 78, 65, .10);
-  --ring: rgba(88, 129, 87, .40);
-  --scrim: rgba(20, 30, 22, .38);
-  --toast-bg: #26352A;
-  --toast-fg: #F1F5EE;
-  --banner-bg: rgba(246, 248, 244, .96);
-  --banner-fg: #161B17;
-  --banner-muted: #626B63;
-  --page: #E8EDE4;
-  --page-fg: #1E2A20;
-  --page-muted: #5B6B5D;
-  --bezel: #1A1D1A;
+  --press: rgba(90, 36, 22, .10);
+  --ring: rgba(231, 111, 81, .40);
+  --scrim: rgba(43, 26, 21, .38);
+  --toast-bg: #3A221B;
+  --toast-fg: #FFF3EE;
+  --banner-bg: rgba(250, 246, 244, .96);
+  --banner-fg: #1C1513;
+  --banner-muted: #6B605C;
+  --page: #F5E8E3;
+  --page-fg: #2B1A15;
+  --page-muted: #7A5A50;
+  --bezel: #1D1715;
   --island: #000000;
-  --lift: rgba(30, 42, 32, .12);
-  --shadow: 0 1px 2px rgba(30, 42, 32, .08), 0 6px 18px rgba(30, 42, 32, .10);
+  --lift: rgba(60, 25, 15, .12);
+  --shadow: 0 1px 2px rgba(60, 25, 15, .08), 0 6px 18px rgba(60, 25, 15, .10);
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --safe-top: 62px;
   --safe-bottom: 34px;
@@ -42,28 +42,28 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121812; --fg: #E4EBE1; --muted: #A9B8A8; --line: #2E3A2F;
-    --primary: #588157; --on-primary: #FFFFFF; --soft: #223024; --on-soft: #D3E3CF;
-    --accent: #9CC59A; --pill: #18201A; --slot: #182019; --slot-line: #233025;
-    --filled: #2A3D2B; --filled-line: #3E5A3F; --danger: #FF7B7B; --danger-bg: #C9393E; --on-danger: #FFFFFF;
-    --press: rgba(211, 227, 207, .12); --ring: rgba(120, 170, 118, .45); --scrim: rgba(0, 0, 0, .55);
-    --toast-bg: #E4EBE1; --toast-fg: #1A231B;
-    --banner-bg: rgba(42, 48, 43, .96); --banner-fg: #EEF2EC; --banner-muted: #AEB8AE;
-    --page: #0B0F0B; --page-fg: #E4EBE1; --page-muted: #A9B8A8; --bezel: #343A34; --island: #000000;
+    --bg: #1B1210; --fg: #F5E5DF; --muted: #CDB2A8; --line: #45302A;
+    --primary: #E76F51; --on-primary: #2A130C; --soft: #4A2419; --on-soft: #FCD9CD;
+    --accent: #F29A80; --pill: #120B09; --slot: #231714; --slot-line: #33221D;
+    --filled: #4E2A20; --filled-line: #74402F; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
+    --press: rgba(252, 217, 205, .12); --ring: rgba(231, 111, 81, .45); --scrim: rgba(0, 0, 0, .55);
+    --toast-bg: #F5E5DF; --toast-fg: #2A1712;
+    --banner-bg: rgba(50, 42, 40, .96); --banner-fg: #F7EFEC; --banner-muted: #BCAEA8;
+    --page: #0F0907; --page-fg: #F5E5DF; --page-muted: #CDB2A8; --bezel: #3A322F; --island: #000000;
     --lift: rgba(0, 0, 0, .35);
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121812; --fg: #E4EBE1; --muted: #A9B8A8; --line: #2E3A2F;
-  --primary: #588157; --on-primary: #FFFFFF; --soft: #223024; --on-soft: #D3E3CF;
-  --accent: #9CC59A; --pill: #18201A; --slot: #182019; --slot-line: #233025;
-  --filled: #2A3D2B; --filled-line: #3E5A3F; --danger: #FF7B7B; --danger-bg: #C9393E; --on-danger: #FFFFFF;
-  --press: rgba(211, 227, 207, .12); --ring: rgba(120, 170, 118, .45); --scrim: rgba(0, 0, 0, .55);
-  --toast-bg: #E4EBE1; --toast-fg: #1A231B;
-  --banner-bg: rgba(42, 48, 43, .96); --banner-fg: #EEF2EC; --banner-muted: #AEB8AE;
-  --page: #0B0F0B; --page-fg: #E4EBE1; --page-muted: #A9B8A8; --bezel: #343A34; --island: #000000;
+  --bg: #1B1210; --fg: #F5E5DF; --muted: #CDB2A8; --line: #45302A;
+  --primary: #E76F51; --on-primary: #2A130C; --soft: #4A2419; --on-soft: #FCD9CD;
+  --accent: #F29A80; --pill: #120B09; --slot: #231714; --slot-line: #33221D;
+  --filled: #4E2A20; --filled-line: #74402F; --danger: #FF7B7B; --danger-bg: #C62828; --on-danger: #FFFFFF;
+  --press: rgba(252, 217, 205, .12); --ring: rgba(231, 111, 81, .45); --scrim: rgba(0, 0, 0, .55);
+  --toast-bg: #F5E5DF; --toast-fg: #2A1712;
+  --banner-bg: rgba(50, 42, 40, .96); --banner-fg: #F7EFEC; --banner-muted: #BCAEA8;
+  --page: #0F0907; --page-fg: #F5E5DF; --page-muted: #CDB2A8; --bezel: #3A322F; --island: #000000;
   --lift: rgba(0, 0, 0, .35);
   --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
   color-scheme: dark;
@@ -112,7 +112,7 @@ svg { display: block; }
 .row.now .time { background: var(--primary); color: var(--on-primary); }
 .row.past .time { color: var(--muted); opacity: .6; }
 .slot { min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1px; padding: 5px 14px; border: 1px solid var(--slot-line); border-radius: 12px; background: var(--slot); text-align: left; transition: transform .08s; }
-.slot:active, .cell:active { transform: scale(.97); }
+button.slot:active, .cell:active { transform: scale(.97); }
 .slot.filled { background: var(--filled); border-color: var(--filled-line); }
 .row.past > .slot, .row.past > .swipe { opacity: .45; }
 .swipe { position: relative; min-width: 0; display: grid; border-radius: 12px; overflow: hidden; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
@@ -168,7 +168,6 @@ svg { display: block; }
 .btn.primary { background: var(--primary); color: var(--on-primary); }
 .btn.primary:disabled { opacity: .45; cursor: default; }
 .btn.secondary { border: 1px solid var(--line); background: var(--slot); color: var(--fg); }
-.btn.danger { height: 40px; margin-top: -6px; background: none; color: var(--danger); }
 
 .cal { position: absolute; z-index: 21; top: 50%; left: 50%; width: min(354px, calc(100% - 32px)); box-sizing: border-box; padding: 6px 10px 16px; border-radius: 24px; background: var(--bg); box-shadow: 0 12px 40px rgba(0, 0, 0, .22); opacity: 0; transform: translate(-50%, -50%) scale(.95); transition: opacity .18s, transform .18s; }
 .cal.open { opacity: 1; transform: translate(-50%, -50%); }
@@ -292,7 +291,6 @@ svg { display: block; }
             <button class="btn secondary" type="button" id="cancel">Mégse</button>
             <button class="btn primary" type="submit" id="save">Mentés</button>
           </div>
-          <button class="btn danger" type="button" id="del">Törlés</button>
         </form>
 
         <div class="cal" id="cal" role="dialog" aria-modal="true" aria-label="Dátum választása" hidden>
@@ -329,8 +327,8 @@ svg { display: block; }
     <h2>Try it</h2>
     <ul>
       <li>Tap an empty hour to add a student.</li>
-      <li>Tap a student to change them.</li>
-      <li>In Nap, swipe a student left to change them, or right to delete them.</li>
+      <li>In Nap, swipe a student left and tap the pen to change them, or swipe right and tap the bin to delete them.</li>
+      <li>In Hét, tap a student to change them.</li>
       <li>Tap the date to open the calendar.</li>
       <li>Use ‹ › to move a day or a week. In Hét you can also swipe sideways.</li>
       <li>Switch between Nap and Hét at the bottom. In Hét, tap a weekday to open that day.</li>
@@ -483,9 +481,9 @@ svg { display: block; }
       html += '<div class="swipe"' + where + '>' +
         '<button type="button" class="act del" tabindex="-1" aria-label="Törlés"><span class="act-icon">' + BIN + '</span></button>' +
         '<button type="button" class="act edit" tabindex="-1" aria-label="Módosítás"><span class="act-icon">' + PEN + '</span></button>' +
-        '<button type="button" class="slot filled"' + where + ' aria-label="' + esc(h + ':00, ' + a.name + (details ? ', ' + details : '')) + '">' +
+        '<div class="slot filled">' +
         '<span class="name">' + esc(a.name) + '</span>' + (details ? '<span class="note">' + esc(details) + '</span>' : '') +
-        '</button></div></div>';
+        '</div></div></div>';
     }
     $('dayList').innerHTML = html;
   }
@@ -568,7 +566,6 @@ svg { display: block; }
     fName.value = a ? a.name : '';
     fPhone.value = a ? a.phone : '';
     fNote.value = a ? a.note : '';
-    $('del').hidden = !a;
     updateSave();
     hideToast();
     openOverlay(sheet);
@@ -586,12 +583,6 @@ svg { display: block; }
     showToast(ed.isNew ? 'Elmentve' : 'Módosítva');
   });
   $('cancel').addEventListener('click', closeOverlay);
-  $('del').addEventListener('click', function () {
-    var ed = state.editing, key = ed.day + '|' + ed.hour;
-    data.delete(key);
-    closeOverlay();
-    render();
-  });
   fName.addEventListener('input', updateSave);
   fName.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); fPhone.focus(); } });
   fPhone.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); fNote.focus(); } });
@@ -724,6 +715,7 @@ svg { display: block; }
       return;
     }
     if (openSwipe) { settle(openSwipe, 0); return; }
+    if (e.target.closest('.swipe')) return;
     var open = e.target.closest('[data-open]');
     if (open) {
       state.day = open.getAttribute('data-open');

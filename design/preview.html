@@ -189,6 +189,7 @@ button.slot:active, .cell:active { transform: scale(.97); }
 
 .toast { position: absolute; z-index: 30; left: 16px; right: 16px; bottom: calc(var(--safe-bottom) + 64px); display: flex; align-items: center; gap: 8px; min-height: 48px; box-sizing: border-box; padding: 6px 16px; border-radius: 14px; background: var(--toast-bg); color: var(--toast-fg); font-size: 15px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); transition: opacity .2s, transform .2s; }
 .toast.show { opacity: 1; transform: none; }
+.toast { touch-action: none; -webkit-user-select: none; user-select: none; }
 
 .banner { position: absolute; z-index: 40; top: 54px; left: 10px; right: 10px; display: flex; gap: 11px; padding: 12px 14px; border-radius: 24px; background: var(--banner-bg); color: var(--banner-fg); box-shadow: 0 8px 30px rgba(0, 0, 0, .25); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); opacity: 0; transform: translateY(-16px); transition: opacity .25s, transform .3s cubic-bezier(.2, .8, .2, 1); cursor: pointer; }
 .banner.show { opacity: 1; transform: none; }
@@ -329,6 +330,7 @@ button.slot:active, .cell:active { transform: scale(.97); }
       <li>Tap an empty hour to add a student.</li>
       <li>In Nap, swipe a student left and tap the pen to change them, or swipe right and tap the bin to delete them.</li>
       <li>In Hét, tap a student to change them.</li>
+      <li>Messages such as “Elmentve” disappear after 1.5 seconds. Swipe one down to close it sooner.</li>
       <li>Tap the date to open the calendar.</li>
       <li>Use ‹ › to move a day or a week. In Hét you can also swipe sideways.</li>
       <li>Switch between Nap and Hét at the bottom. In Hét, tap a weekday to open that day.</li>
@@ -614,22 +616,53 @@ button.slot:active, .cell:active { transform: scale(.97); }
   });
 
   // ---- Toast ----
-  var toastTimer = null;
+  // A message stays 1.5 seconds; swiping it down puts it away sooner.
+  var TOAST_MS = 1500, toastTimer = null, toastDrag = null, toast = $('toast');
   function showToast(text) {
-    var t = $('toast');
     $('toastText').textContent = text;
-    t.hidden = false;
-    void t.offsetWidth;
-    t.classList.add('show');
+    toast.style.transition = '';
+    toast.style.transform = '';
+    toast.hidden = false;
+    void toast.offsetWidth;
+    toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(hideToast, 2600);
+    toastTimer = setTimeout(hideToast, TOAST_MS);
   }
   function hideToast() {
-    var t = $('toast');
     clearTimeout(toastTimer);
-    t.classList.remove('show');
-    toastTimer = setTimeout(function () { t.hidden = true; }, 220);
+    toast.classList.remove('show');
+    toastTimer = setTimeout(function () {
+      toast.hidden = true;
+      toast.style.transition = '';
+      toast.style.transform = '';
+    }, 220);
   }
+  toast.addEventListener('pointerdown', function (e) {
+    toastDrag = { id: e.pointerId, y: e.clientY, dy: 0 };
+    clearTimeout(toastTimer);
+    try { toast.setPointerCapture(e.pointerId); } catch (err) {}
+    toast.style.transition = 'none';
+  });
+  toast.addEventListener('pointermove', function (e) {
+    if (!toastDrag || e.pointerId !== toastDrag.id) return;
+    toastDrag.dy = Math.max(0, e.clientY - toastDrag.y);
+    toast.style.transform = 'translateY(' + toastDrag.dy + 'px)';
+  });
+  function endToastDrag(e) {
+    if (!toastDrag || e.pointerId !== toastDrag.id) return;
+    var dy = toastDrag.dy;
+    toastDrag = null;
+    toast.style.transition = '';
+    if (dy > 24) {
+      toast.style.transform = 'translateY(' + (dy + 40) + 'px)';
+      hideToast();
+    } else {
+      toast.style.transform = '';
+      toastTimer = setTimeout(hideToast, TOAST_MS);
+    }
+  }
+  toast.addEventListener('pointerup', endToastDrag);
+  toast.addEventListener('pointercancel', endToastDrag);
 
   // ---- Navigation ----
   function step(n) {
@@ -706,8 +739,10 @@ button.slot:active, .cell:active { transform: scale(.97); }
     if (act) {
       var wrap = act.closest('.swipe'), day = wrap.getAttribute('data-day'), hour = +wrap.getAttribute('data-hour');
       if (act.classList.contains('del')) {
+        var removed = get(day, hour);
         data.delete(day + '|' + hour);
         render();
+        showToast(removed.name + ' törölve');
       } else {
         settle(wrap, 0);
         openSlot(day, hour);

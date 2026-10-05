@@ -14,11 +14,11 @@ tomorrow's list. The Android app with the same name lives in `kertember/AppForMo
 
 Built and tested; not deployed yet. Still to do:
 
-1. Supabase setup in the **meliapp** project (organization **emlk**), steps below. Use only that
-   project; the projects in kertember's Org belong to other apps.
-2. Fill in the Project URL in `web/config.js`.
-3. Merge into `main` and turn on GitHub Pages.
-4. Set up her iPhone: you sign in for her once; she never sees the sign-in screen again.
+1. Supabase setup in the **meliapp** project (organization **emlk**, project ref
+   `jtykndlzuswmbzpfxfes`), steps below. Use only that project; the projects in kertember's Org
+   belong to other apps.
+2. Merge into `main` and turn on GitHub Pages.
+3. Set up her iPhone: you sign in for her once; she never sees the sign-in screen again.
 
 ## How notifications work
 
@@ -40,7 +40,7 @@ creates its own VAPID keys on first use, so no key has to be copied anywhere.
 3. Authentication → Users → Add user: her e-mail address and a password, with the e-mail
    auto-confirmed.
 4. Authentication → Sign In / Providers: turn off **Allow new users to sign up**.
-5. Put the Project URL (`https://<ref>.supabase.co`) into `web/config.js`.
+5. `web/config.js` holds the Project URL and publishable key (already filled in).
 
 ### 2. GitHub Pages
 

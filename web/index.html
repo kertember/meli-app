@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Füzet</title>
+  <meta name="description" content="Füzet: a diákok órái napra és hétre, emlékeztetőkkel.">
+  <meta name="theme-color" content="#FFE1E3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#4A2329" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Füzet">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="app.css">
+  <script src="vendor/supabase.js" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="app" id="app" hidden>
+    <header class="hdr">
+      <button class="nav" id="prev" type="button" aria-label="Előző nap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6 8.5 12l6 6"/></svg>
+      </button>
+      <button class="date" id="dateBtn" type="button" aria-label="Dátum választása">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9ZM7.5 12.5h3v3h-3v-3Z"/></svg>
+        <span class="date-text"><span class="date-title" id="dTitle"></span><span class="date-sub" id="dSub"></span></span>
+      </button>
+      <button class="nav" id="next" type="button" aria-label="Következő nap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"/></svg>
+      </button>
+    </header>
+
+    <div class="notice" id="notice" role="status" hidden>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 0 0-5.5-6.84V3.5a1.5 1.5 0 0 0-3 0v.66A7 7 0 0 0 5 11v5l-1.7 1.7A1 1 0 0 0 4 19.4h16a1 1 0 0 0 .7-1.7L19 16Z"/></svg>
+      <p id="noticeText"></p>
+      <button class="notice-btn" id="noticeBtn" type="button" hidden>Bekapcsolás</button>
+    </div>
+
+    <main class="main" id="main">
+      <div class="view" id="dayView"><div class="day" id="dayList"></div></div>
+      <div class="view" id="weekView" hidden><div class="week" id="weekGrid"></div></div>
+    </main>
+
+    <nav class="bar">
+      <div class="seg" id="seg" role="tablist" aria-label="Nézet">
+        <button type="button" role="tab" id="tabDay" aria-selected="true">Nap</button>
+        <button type="button" role="tab" id="tabWeek" aria-selected="false">Hét</button>
+      </div>
+    </nav>
+
+    <div class="scrim" id="scrim" hidden></div>
+
+    <form class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+      <div class="grab" aria-hidden="true"></div>
+      <div>
+        <h2 id="sheetTitle">Új diák</h2>
+        <p class="when" id="sheetWhen"></p>
+      </div>
+      <div class="field">
+        <label for="fName">Név</label>
+        <input id="fName" type="text" autocomplete="off" autocapitalize="words" enterkeyhint="next" maxlength="200" placeholder="pl. Kovács Anna">
+      </div>
+      <div class="field">
+        <label for="fPhone">Telefonszám <span class="optional">(nem kötelező)</span></label>
+        <input id="fPhone" type="tel" inputmode="tel" autocomplete="off" enterkeyhint="next" maxlength="50" placeholder="pl. 0745 123 456">
+      </div>
+      <div class="field">
+        <label for="fNote">Megjegyzés</label>
+        <textarea id="fNote" rows="2" enterkeyhint="done" maxlength="1000" placeholder="pl. online óra, dolgozatra készül"></textarea>
+      </div>
+      <div class="actions">
+        <button class="btn secondary" type="button" id="cancel">Mégse</button>
+        <button class="btn primary" type="submit" id="save">Mentés</button>
+      </div>
+    </form>
+
+    <div class="cal" id="cal" role="dialog" aria-modal="true" aria-label="Dátum választása" hidden>
+      <div class="cal-top">
+        <span>Dátum választása</span>
+        <button class="icon-btn" type="button" id="calClose" aria-label="Bezárás"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="cal-month">
+        <strong id="calTitle"></strong>
+        <button class="icon-btn" type="button" id="calPrev" aria-label="Előző hónap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6 8.5 12l6 6"/></svg></button>
+        <button class="icon-btn" type="button" id="calNext" aria-label="Következő hónap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"/></svg></button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <div class="toast" id="toast" role="status" hidden><span id="toastText"></span></div>
+  </div>
+
+  <section class="login" id="login" hidden>
+    <div class="login-card">
+      <div class="login-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18M12.5 8h3M12.5 12h3"/></svg>
+      </div>
+      <div>
+        <h1>Füzet</h1>
+        <p>Jelentkezz be, hogy lásd a diákjaidat.</p>
+      </div>
+      <p class="tip" id="installTip" hidden>Először koppints a Megosztás gombra, add hozzá a Füzetet a Főképernyőhöz, és onnan jelentkezz be. Csak így kapsz értesítéseket.</p>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">E-mail-cím</label>
+          <input id="email" type="email" inputmode="email" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+        </div>
+        <div class="field">
+          <label for="password">Jelszó</label>
+          <input id="password" type="password" autocomplete="current-password" required>
+        </div>
+        <p class="error" id="loginError" role="alert" hidden></p>
+        <button class="btn primary" type="submit" id="loginBtn">Belépés</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

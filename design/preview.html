@@ -1,6 +1,6 @@
 <title>Füzet for iPhone</title>
 <style>
-/* Layout: one iPhone 16 Pro screen (402 × 874 pt): orange date header, 11 hour rows, Nap/Hét switch at the bottom.
+/* Layout: one iPhone 16 Pro screen (402 × 874 pt): orange date header, 12 hour rows (9:00–20:00, scrolling when needed), Nap/Hét switch at the bottom.
    Framed on wide screens, full-bleed on a phone. Colors are the Android Füzet theme. */
 :root {
   --bg: #FFFCF9;
@@ -103,7 +103,7 @@ svg { display: block; }
 @keyframes in-prev { from { transform: translateX(-26px); opacity: .2; } }
 
 .day { box-sizing: border-box; min-height: 100%; display: flex; flex-direction: column; gap: 5px; padding: 10px 12px 10px 2px; }
-.row { flex: 1 0 48px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: stretch; }
+.row { flex: 1 0 54px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: stretch; }
 .time { align-self: center; justify-self: center; padding: 3px 6px; border-radius: 9px; font-size: 16px; font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; }
 .row.now .time { background: var(--primary); color: var(--on-primary); }
 .row.past .time { color: var(--muted); opacity: .6; }
@@ -114,7 +114,7 @@ svg { display: block; }
 .name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 17px; font-weight: 600; line-height: 1.2; }
 .note { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; line-height: 1.25; color: var(--muted); }
 
-.week { box-sizing: border-box; min-height: 100%; display: grid; grid-template-columns: 20px repeat(7, minmax(0, 1fr)); grid-template-rows: auto repeat(11, minmax(42px, 1fr)); gap: 2px; padding: 6px 8px 10px 2px; }
+.week { box-sizing: border-box; min-height: 100%; display: grid; grid-template-columns: 20px repeat(7, minmax(0, 1fr)); grid-template-rows: auto repeat(12, minmax(42px, 1fr)); gap: 2px; padding: 6px 8px 10px 2px; }
 .wd { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 2px 0 5px; border: 0; border-radius: 10px; background: none; color: var(--muted); }
 .wd:active { background: var(--press); }
 .wd-name { font-size: 12px; font-weight: 600; letter-spacing: .03em; }
@@ -261,7 +261,7 @@ svg { display: block; }
         <form class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
           <div class="grab" aria-hidden="true"></div>
           <div>
-            <h2 id="sheetTitle">Új kliens</h2>
+            <h2 id="sheetTitle">Új diák</h2>
             <p class="when" id="sheetWhen"></p>
           </div>
           <div class="field">
@@ -270,7 +270,7 @@ svg { display: block; }
           </div>
           <div class="field">
             <label for="fNote">Megjegyzés</label>
-            <textarea id="fNote" rows="2" enterkeyhint="done" placeholder="pl. hajvágás, hajfestés"></textarea>
+            <textarea id="fNote" rows="2" enterkeyhint="done" placeholder="pl. online óra, dolgozatra készül"></textarea>
           </div>
           <div class="actions">
             <button class="btn secondary" type="button" id="cancel">Mégse</button>
@@ -295,7 +295,7 @@ svg { display: block; }
         <div class="toast" id="toast" role="status" hidden><span id="toastText"></span><button type="button" id="toastAction" hidden>Visszavonás</button></div>
 
         <div class="banner" id="banner" role="status" hidden>
-          <div class="b-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#4A2508"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64ZM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2Zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2Zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5ZM19 3l-6 6 2 2 7-7V3h-3Z"/></svg></div>
+          <div class="b-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#4A2508" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18M12.5 8h3M12.5 12h3"/></svg></div>
           <div class="b-body">
             <div class="b-head"><span class="b-title" id="bTitle"></span><span class="b-time">most</span></div>
             <div class="b-text" id="bText"></div>
@@ -309,11 +309,11 @@ svg { display: block; }
 
   <aside class="panel">
     <h1>Füzet for iPhone</h1>
-    <p>A preview at iPhone 16 Pro size (402 × 874 points). The clients are samples. The clock is fixed at Tuesday 6 October, 10:40, so the earlier hours show as past.</p>
+    <p>A preview at iPhone 16 Pro size (402 × 874 points). The students are samples. The clock is fixed at Tuesday 6 October, 10:40, so the earlier hours show as past.</p>
     <h2>Try it</h2>
     <ul>
-      <li>Tap an empty hour to add a client.</li>
-      <li>Tap a client to change or delete them.</li>
+      <li>Tap an empty hour to add a student.</li>
+      <li>Tap a student to change or delete them.</li>
       <li>Tap the date to open the calendar.</li>
       <li>Use ‹ › or swipe sideways to move a day or a week.</li>
       <li>Switch between Nap and Hét at the bottom. In Hét, tap a weekday to open that day.</li>
@@ -339,7 +339,7 @@ svg { display: block; }
   // The preview's fixed "now": Tuesday 6 October 2026, 10:40.
   var TODAY = '2026-10-06';
   var NOW = 10 * 60 + 40;
-  var FIRST_HOUR = 9, LAST_HOUR = 19;
+  var FIRST_HOUR = 9, LAST_HOUR = 20;
 
   var MONTHS = ['január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
   var MONTHS_SHORT = ['jan.', 'febr.', 'márc.', 'ápr.', 'máj.', 'jún.', 'júl.', 'aug.', 'szept.', 'okt.', 'nov.', 'dec.'];
@@ -394,20 +394,20 @@ svg { display: block; }
     return 'future';
   }
 
-  // ---- Sample clients ----
+  // ---- Sample students ----
   var data = new Map();
   var samples = {
-    '2026-09-29': { 10: ['Kiss Mariann', 'festés'], 14: ['Nagy Éva', 'vágás'] },
-    '2026-10-02': { 9: ['Horváth Kata', 'melír'], 15: ['Simon Edit', 'vágás'] },
-    '2026-10-05': { 9: ['Nagy Éva', 'festés + vágás'], 11: ['Kiss Mariann', 'melír'], 14: ['Tóth Ilona', 'dauer'], 16: ['Horváth Kata', 'vágás'] },
-    '2026-10-06': { 9: ['Szabó Réka', 'hajvágás'], 10: ['Varga Zsuzsa', 'tőfestés'], 11: ['Kovács Anna', 'festés, szárítás'], 13: ['Molnár Judit', 'frufru igazítás'], 15: ['Farkas Eszter', 'melír + vágás'], 17: ['Balogh Nóra', 'kontyfrizura esküvőre'], 18: ['Papp Gizi', 'vágás'] },
-    '2026-10-07': { 9: ['Lakatos Erika', 'dauer'], 10: ['Takács Bea', 'vágás'], 12: ['Juhász Mária', 'festés'], 16: ['Németh Zita', 'hajvágás'] },
-    '2026-10-08': { 10: ['Oláh Kinga', 'balayage'], 14: ['Simon Edit', 'vágás, szárítás'], 15: ['Rácz Anikó', 'tőfestés'], 18: ['Fekete Hajni', 'vágás'] },
-    '2026-10-09': { 9: ['Szűcs Marika', 'festés'], 11: ['Török Dóra', 'melír'], 12: ['Gál Andrea', ''], 13: ['Pintér Rita', 'vágás'], 17: ['Bíró Lilla', 'szalagavatós frizura'] },
-    '2026-10-10': { 9: ['Vincze Klára', 'vágás'], 10: ['Kozma Ági', 'festés'] },
-    '2026-10-13': { 10: ['Nagy Éva', 'vágás'], 15: ['Kiss Mariann', 'tőfestés'] },
-    '2026-10-15': { 9: ['Tóth Ilona', 'vágás'], 11: ['Horváth Kata', 'festés'] },
-    '2026-10-20': { 14: ['Balogh Nóra', 'próbafrizura'] }
+    '2026-09-29': { 10: ['Kiss Mariann', 'online'], 14: ['Nagy Éva', ''] },
+    '2026-10-02': { 9: ['Horváth Kata', ''], 15: ['Simon Edit', 'online'] },
+    '2026-10-05': { 9: ['Nagy Éva', 'dolgozatra készül'], 11: ['Kiss Mariann', 'házi feladat'], 14: ['Tóth Ilona', 'online'], 16: ['Horváth Kata', ''] },
+    '2026-10-06': { 9: ['Szabó Réka', 'első óra'], 10: ['Varga Zsuzsa', 'házi feladat'], 11: ['Kovács Anna', 'dolgozat pénteken'], 13: ['Molnár Judit', 'online'], 15: ['Farkas Eszter', 'pótóra'], 17: ['Balogh Nóra', 'vizsgára készül'], 18: ['Papp Gizi', ''], 19: ['Takács Bea', 'online'] },
+    '2026-10-07': { 9: ['Lakatos Erika', 'első óra'], 10: ['Takács Bea', 'online'], 12: ['Juhász Mária', 'dolgozatra készül'], 16: ['Németh Zita', ''], 20: ['Kozma Ági', 'pótóra'] },
+    '2026-10-08': { 10: ['Oláh Kinga', 'házi feladat'], 14: ['Simon Edit', 'online'], 15: ['Rácz Anikó', ''], 18: ['Fekete Hajni', 'dolgozat jövő héten'], 20: ['Bíró Lilla', 'online'] },
+    '2026-10-09': { 9: ['Szűcs Marika', 'online'], 11: ['Török Dóra', 'első óra'], 12: ['Gál Andrea', ''], 13: ['Pintér Rita', 'házi feladat'], 17: ['Bíró Lilla', 'vizsgára készül'] },
+    '2026-10-10': { 9: ['Vincze Klára', ''], 10: ['Kozma Ági', 'pótóra'] },
+    '2026-10-13': { 10: ['Nagy Éva', ''], 15: ['Kiss Mariann', 'online'] },
+    '2026-10-15': { 9: ['Tóth Ilona', 'dolgozatra készül'], 11: ['Horváth Kata', ''] },
+    '2026-10-20': { 14: ['Balogh Nóra', 'vizsga előtti óra'] }
   };
   Object.keys(samples).forEach(function (day) {
     Object.keys(samples[day]).forEach(function (h) {
@@ -530,11 +530,11 @@ svg { display: block; }
   function openSlot(day, hour) {
     var a = get(day, hour);
     if (!a && slotState(day, hour) === 'past') {
-      showToast('Elmúlt időpontra nem lehet új klienst felvenni.');
+      showToast('Elmúlt időpontra nem lehet új diákot felvenni.');
       return;
     }
     state.editing = { day: day, hour: hour, isNew: !a };
-    $('sheetTitle').textContent = a ? 'Kliens módosítása' : 'Új kliens';
+    $('sheetTitle').textContent = a ? 'Diák módosítása' : 'Új diák';
     $('sheetWhen').textContent = cap(WEEKDAYS[weekday(day)]) + ', ' + monthDay(day) + ' · ' + hour + ':00–' + (hour + 1) + ':00';
     fName.value = a ? a.name : '';
     fNote.value = a ? a.note : '';
@@ -679,7 +679,7 @@ svg { display: block; }
           if (a && h * 60 > NOW) break;
           a = null;
         }
-        if (!a) { note.textContent = 'There are no more clients today in the preview, so no reminder is due.'; return; }
+        if (!a) { note.textContent = 'There are no more students today in the preview, so no reminder is due.'; return; }
         showBanner('1 óra múlva: ' + a.name, h + ':00' + (a.note ? ' · ' + a.note : ''));
       } else {
         var tomorrow = addDays(TODAY, 1), lines = [];
@@ -687,8 +687,8 @@ svg { display: block; }
           a = get(tomorrow, h);
           if (a) lines.push(h + ':00 ' + a.name + (a.note ? ' – ' + a.note : ''));
         }
-        if (!lines.length) { note.textContent = 'There are no clients tomorrow, so the 21:00 notification would be skipped.'; return; }
-        showBanner('Itt vannak a holnapi klienseid.', lines.join('\n'));
+        if (!lines.length) { note.textContent = 'There are no students tomorrow, so the 21:00 notification would be skipped.'; return; }
+        showBanner('Itt vannak a holnapi diákjaid.', lines.join('\n'));
       }
     });
   });

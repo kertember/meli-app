@@ -10,6 +10,16 @@ tomorrow's list. The Android app with the same name lives in `kertember/AppForMo
 - `tests/` – database, notification and date tests (`npm ci && npm test`)
 - `design/preview.html` – the approved clickable mockup
 
+## Status
+
+Built and tested; not deployed yet. Still to do:
+
+1. Supabase setup in the **meliapp** project (organization **emlk**), steps below. Use only that
+   project; the projects in kertember's Org belong to other apps.
+2. Fill in the Project URL in `web/config.js`.
+3. Merge into `main` and turn on GitHub Pages.
+4. Set up her iPhone: you sign in for her once; she never sees the sign-in screen again.
+
 ## How notifications work
 
 pg_cron checks every minute whether a reminder or the evening summary is due. Only then does it
@@ -42,7 +52,8 @@ the tests and publishes `web/` to <https://kertember.github.io/meli-app/>.
 1. Open <https://kertember.github.io/meli-app/> in Safari.
 2. Share → Add to Home Screen, then open Füzet from the Home Screen. (A Home Screen web app has
    its own storage, so sign in there, not in Safari.)
-3. Sign in, tap **Bekapcsolás** and allow notifications.
+3. Sign in with her account (you do this once for her; the app stays signed in), then tap
+   **Bekapcsolás** and allow notifications.
 
 The phone needs internet for the notifications to arrive. A free Supabase project can pause after
 a week without use; opening the app keeps it active.
